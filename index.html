@@ -15,16 +15,14 @@
 
 <style>
 
-/* =========================================
-   PORTRAIT DIGITAL SIGNAGE
-   1080 x 1920
-   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 html,
 body {
-
-    margin: 0;
-    padding: 0;
 
     width: 100%;
     height: 100%;
@@ -36,16 +34,15 @@ body {
 }
 
 
-/* =========================================
-   FULL PORTRAIT SCREEN
-   ========================================= */
+/* ==========================================
+   FULL VERTICAL DIGITAL SIGNAGE
+   ========================================== */
 
 #screen {
 
     position: fixed;
 
-    top: 0;
-    left: 0;
+    inset: 0;
 
     width: 100vw;
     height: 100vh;
@@ -57,24 +54,33 @@ body {
 }
 
 
-/* =========================================
-   VIDEO PLAYER
-   ========================================= */
+/* ==========================================
+   YOUTUBE VIDEO
+   ZOOMED TO REMOVE BLACK SPACE
+   ========================================== */
 
 #player {
 
     position: absolute;
 
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
 
-    width: 100vw;
+    /*
+       Original YouTube player is 16:9.
+
+       We make it large enough to fill
+       the vertical 9:16 kiosk.
+
+       The excess sides are cropped.
+    */
+
+    width: 177.78vh;
     height: 100vh;
 
-    border: none;
+    transform: translate(-50%, -50%);
 
-    margin: 0;
-    padding: 0;
+    border: 0;
 
     display: block;
 
@@ -102,19 +108,20 @@ body {
 <script>
 
 
-/* =========================================
-   FATIMA HOTEL RECEPTION PLAYLIST
-   ========================================= */
+/* ==========================================
+   FATIMA HOTEL RECEPTION VIDEOS
+   ========================================== */
 
 const videos =
 "NVUsDQhtq6U,gv6KQlQK7tU,JuAuWy-dCkc,jcWhuuJ1X-U,FanL_bNsrSw";
 
 
-/* =========================================
-   LOAD YOUTUBE
-   ========================================= */
+/* ==========================================
+   YOUTUBE PLAYLIST
+   ========================================== */
 
-const player = document.getElementById("player");
+const player =
+    document.getElementById("player");
 
 player.src =
     "https://www.youtube.com/embed/NVUsDQhtq6U" +
@@ -129,9 +136,9 @@ player.src =
     "&playlist=" + videos;
 
 
-/* =========================================
+/* ==========================================
    HIDE CURSOR
-   ========================================= */
+   ========================================== */
 
 let timer;
 
@@ -149,6 +156,7 @@ document.addEventListener("mousemove", function () {
 
 });
 
+
 setTimeout(function () {
 
     document.body.style.cursor = "none";
@@ -160,4 +168,3 @@ setTimeout(function () {
 </body>
 
 </html>
-
