@@ -1,0 +1,162 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fatima Hotel Reception</title>
+
+<style>
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    background: #000;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* ==========================================
+   HORIZONTAL LED / TV
+   ========================================== */
+
+#player {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    border: 0;
+
+    display: block;
+
+    background: #000;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==========================================
+     YOUTUBE PLAYER
+     ========================================== -->
+
+<iframe
+    id="player"
+    allow="autoplay; fullscreen"
+    allowfullscreen>
+</iframe>
+
+
+<script>
+
+
+// ==========================================
+// FATIMA HOTEL RECEPTION VIDEOS
+// ==========================================
+
+const videos =
+"NVUsDQhtq6U,gv6KQlQK7tU,JuAuWy-dCkc,jcWhuuJ1X-U,FanL_bNsrSw";
+
+
+// ==========================================
+// LOAD YOUTUBE PLAYLIST
+// ==========================================
+
+const player = document.getElementById("player");
+
+player.src =
+    "https://www.youtube.com/embed/NVUsDQhtq6U" +
+
+    "?autoplay=1" +
+
+    "&mute=1" +
+
+    "&controls=0" +
+
+    "&rel=0" +
+
+    "&modestbranding=1" +
+
+    "&playsinline=1" +
+
+    "&loop=1" +
+
+    "&playlist=" + videos;
+
+
+// ==========================================
+// FULLSCREEN
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const screen = document.documentElement;
+
+    if (screen.requestFullscreen) {
+
+        screen.requestFullscreen().catch(function () {});
+
+    }
+
+});
+
+
+// ==========================================
+// HIDE MOUSE CURSOR
+// ==========================================
+
+let cursorTimer;
+
+document.addEventListener("mousemove", function () {
+
+    document.body.style.cursor = "default";
+
+    clearTimeout(cursorTimer);
+
+    cursorTimer = setTimeout(function () {
+
+        document.body.style.cursor = "none";
+
+    }, 2000);
+
+});
+
+
+// ==========================================
+// HIDE CURSOR AFTER START
+// ==========================================
+
+setTimeout(function () {
+
+    document.body.style.cursor = "none";
+
+}, 3000);
+
+
+</script>
+
+
+</body>
+
+</html>
+```
