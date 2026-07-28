@@ -15,8 +15,13 @@
 
 <style>
 
+/* =========================================
+   FULL HORIZONTAL SCREEN
+   ========================================= */
+
 html,
 body {
+
     margin: 0;
     padding: 0;
 
@@ -26,18 +31,20 @@ body {
     overflow: hidden;
 
     background: #000;
+
 }
 
 
 /* =========================================
-   HORIZONTAL DIGITAL SIGNAGE
+   SCREEN
    ========================================= */
 
 .screen {
 
     position: fixed;
 
-    inset: 0;
+    top: 0;
+    left: 0;
 
     width: 100vw;
     height: 100vh;
@@ -45,35 +52,31 @@ body {
     overflow: hidden;
 
     background: #000;
+
 }
 
 
 /* =========================================
-   VERTICAL VIDEO
-   FILL ENTIRE HORIZONTAL SCREEN
+   VIDEO
    ========================================= */
 
 #player {
 
     position: absolute;
 
-    top: 50%;
-    left: 50%;
+    top: 0;
+    left: 0;
 
-    /*
-    Portrait video enlarged enough
-    to completely fill the landscape screen
-    */
-
-    width: 177.78vh;
+    width: 100vw;
     height: 100vh;
-
-    transform:
-        translate(-50%, -50%);
 
     border: 0;
 
+    margin: 0;
+    padding: 0;
+
     display: block;
+
 }
 
 </style>
@@ -88,7 +91,7 @@ body {
 
     <iframe
         id="player"
-        allow="autoplay; encrypted-media"
+        allow="autoplay; encrypted-media; fullscreen"
         allowfullscreen>
     </iframe>
 
@@ -110,24 +113,30 @@ const videos =
    YOUTUBE PLAYLIST
    ========================================= */
 
-const player =
-    document.getElementById("player");
+const player = document.getElementById("player");
 
 player.src =
     "https://www.youtube.com/embed/NVUsDQhtq6U" +
 
     "?autoplay=1" +
+
     "&mute=1" +
+
     "&controls=0" +
+
     "&rel=0" +
+
     "&modestbranding=1" +
+
     "&playsinline=1" +
+
     "&loop=1" +
+
     "&playlist=" + videos;
 
 
 /* =========================================
-   HIDE MOUSE
+   HIDE MOUSE CURSOR
    ========================================= */
 
 let cursorTimer;
