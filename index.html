@@ -1,119 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport"
       content="width=device-width,
                initial-scale=1.0,
                maximum-scale=1.0,
                user-scalable=no">
+
 <title>Fatima Hotel Reception</title>
+
 <style>
-/* =========================================
-   FULL HORIZONTAL SCREEN
-   ========================================= */
+
 html,
 body {
+
     margin: 0;
     padding: 0;
+
     width: 100%;
     height: 100%;
+
     overflow: hidden;
+
     background: #000;
+
 }
 
+
 /* =========================================
-   SCREEN (crops anything that overflows)
+   VERTICAL DIGITAL SIGNAGE
    ========================================= */
-.screen {
+
+#screen {
+
     position: fixed;
+
     top: 0;
     left: 0;
+
     width: 100vw;
     height: 100vh;
+
     overflow: hidden;
+
     background: #000;
+
 }
 
-/* =========================================
-   VIDEO ASPECT RATIO
-   Change these two numbers if your videos are
-   a different shape. 9 / 16 = standard vertical
-   (portrait) video, like TikTok / Reels / Shorts.
-   ========================================= */
-:root {
-    --v-w: 9;
-    --v-h: 16;
-}
 
 /* =========================================
-   BACKGROUND LAYER
-   Same video, blown up + blurred so it fills
-   the entire horizontal screen edge-to-edge.
-   Purely decorative, sits behind everything.
+   VIDEO FIT
    ========================================= */
-#bg-wrap {
+
+#player {
+
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100vw;
-    height: calc(100vw * var(--v-h) / var(--v-w));
-    transform: translate(-50%, -50%) scale(1.15);
-    filter: blur(35px) brightness(0.55);
-    pointer-events: none;
-}
 
-#bg-player {
+    top: 0;
+    left: 0;
+
     width: 100%;
     height: 100%;
+
     border: 0;
+
+    margin: 0;
+    padding: 0;
+
     display: block;
+
 }
 
-/* =========================================
-   FOREGROUND LAYER
-   The actual video, shown in full (nothing
-   cropped), sized to fit the screen height.
-   ========================================= */
-#fg-wrap {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    height: 100vh;
-    width: calc(100vh * var(--v-w) / var(--v-h));
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 60px rgba(0, 0, 0, 0.6);
-    z-index: 2;
-    pointer-events: none;
-}
-
-#fg-player {
-    width: 100%;
-    height: 100%;
-    border: 0;
-    display: block;
-}
 </style>
+
 </head>
+
+
 <body>
-<div class="screen">
-    <div id="bg-wrap">
-        <iframe id="bg-player" allow="autoplay; encrypted-media" tabindex="-1"></iframe>
-    </div>
-    <div id="fg-wrap">
-        <iframe id="fg-player" allow="autoplay; encrypted-media; fullscreen" allowfullscreen tabindex="-1"></iframe>
-    </div>
+
+
+<div id="screen">
+
+    <iframe
+        id="player"
+        allow="autoplay; encrypted-media; fullscreen"
+        allowfullscreen>
+    </iframe>
+
 </div>
+
+
 <script>
+
+
 /* =========================================
    FATIMA HOTEL RECEPTION VIDEOS
    ========================================= */
+
 const videos =
 "NVUsDQhtq6U,gv6KQlQK7tU,JuAuWy-dCkc,jcWhuuJ1X-U,FanL_bNsrSw";
 
-const firstVideo = "NVUsDQhtq6U";
 
-const baseParams =
+/* =========================================
+   YOUTUBE PLAYLIST
+   ========================================= */
+
+const player = document.getElementById("player");
+
+player.src =
+    "https://www.youtube.com/embed/NVUsDQhtq6U" +
     "?autoplay=1" +
     "&mute=1" +
     "&controls=0" +
@@ -121,30 +120,40 @@ const baseParams =
     "&modestbranding=1" +
     "&playsinline=1" +
     "&loop=1" +
-    "&disablekb=1" +
-    "&iv_load_policy=3" +
     "&playlist=" + videos;
 
-const fg = document.getElementById("fg-player");
-const bg = document.getElementById("bg-player");
-
-fg.src = "https://www.youtube.com/embed/" + firstVideo + baseParams;
-bg.src = "https://www.youtube.com/embed/" + firstVideo + baseParams;
 
 /* =========================================
-   HIDE MOUSE CURSOR
+   HIDE MOUSE
    ========================================= */
+
 let cursorTimer;
+
 document.addEventListener("mousemove", function () {
+
     document.body.style.cursor = "default";
+
     clearTimeout(cursorTimer);
+
     cursorTimer = setTimeout(function () {
+
         document.body.style.cursor = "none";
+
     }, 2000);
+
 });
+
+
 setTimeout(function () {
+
     document.body.style.cursor = "none";
+
 }, 3000);
+
 </script>
+
+
 </body>
+
 </html>
+
