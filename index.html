@@ -1,151 +1,119 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no">
 
 <title>Fatima Hotel Reception</title>
 
 <style>
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 html,
 body {
+
+    margin: 0;
+    padding: 0;
+
     width: 100%;
     height: 100%;
+
     overflow: hidden;
+
     background: #000;
+
 }
 
-/*
-==================================================
-HORIZONTAL LED DISPLAY
-Automatically fills the complete LED screen
-regardless of the LED resolution/aspect ratio.
-==================================================
-*/
+/* Full horizontal display */
 
-#player {
+body {
+
     position: fixed;
 
     top: 0;
     left: 0;
 
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
 
-    border: none;
+}
 
-    display: block;
+/* YouTube */
 
-    background: #000;
+#player {
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    border: 0;
+
+    margin: 0;
+    padding: 0;
+
 }
 
 </style>
 
 </head>
 
+
 <body>
+
 
 <iframe
     id="player"
-    allow="autoplay; fullscreen"
+    src="https://www.youtube.com/embed/NVUsDQhtq6U?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&playsinline=1&loop=1&playlist=NVUsDQhtq6U,gv6KQlQK7tU,JuAuWy-dCkc,jcWhuuJ1X-U,FanL_bNsrSw"
+    frameborder="0"
+    allow="autoplay; encrypted-media"
     allowfullscreen>
 </iframe>
 
 
 <script>
 
-/*
-==================================================
-FATIMA HOTEL RECEPTION
-YOUTUBE VIDEO PLAYLIST
-==================================================
-*/
+/* Hide mouse */
 
-const videos =
-"NVUsDQhtq6U,gv6KQlQK7tU,JuAuWy-dCkc,jcWhuuJ1X-U,FanL_bNsrSw";
+let timer;
 
-
-/*
-==================================================
-LOAD VIDEOS
-==================================================
-*/
-
-const player = document.getElementById("player");
-
-player.src =
-    "https://www.youtube.com/embed/NVUsDQhtq6U" +
-    "?autoplay=1" +
-    "&mute=1" +
-    "&controls=0" +
-    "&rel=0" +
-    "&modestbranding=1" +
-    "&playsinline=1" +
-    "&loop=1" +
-    "&playlist=" + videos;
-
-
-/*
-==================================================
-FULL SCREEN
-==================================================
-*/
-
-function goFullscreen() {
-
-    const element = document.documentElement;
-
-    if (element.requestFullscreen) {
-        element.requestFullscreen().catch(() => {});
-    }
-
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    setTimeout(goFullscreen, 1000);
-
-});
-
-
-/*
-==================================================
-HIDE MOUSE CURSOR
-==================================================
-*/
-
-let cursorTimer;
-
-function hideCursor() {
-
-    document.body.style.cursor = "none";
-
-}
-
-document.addEventListener("mousemove", () => {
+document.addEventListener("mousemove", function () {
 
     document.body.style.cursor = "default";
 
-    clearTimeout(cursorTimer);
+    clearTimeout(timer);
 
-    cursorTimer = setTimeout(hideCursor, 1500);
+    timer = setTimeout(function () {
+
+        document.body.style.cursor = "none";
+
+    }, 2000);
 
 });
 
 
-setTimeout(hideCursor, 3000);
+/* Hide cursor after 3 seconds */
+
+setTimeout(function () {
+
+    document.body.style.cursor = "none";
+
+}, 3000);
 
 </script>
+
 
 </body>
 
 </html>
+```
