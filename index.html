@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +32,7 @@ body {
 
 
 /* ==========================================
-   FULL VERTICAL DIGITAL SIGNAGE
+   FULL PORTRAIT DIGITAL SIGNAGE
    ========================================== */
 
 #screen {
@@ -47,7 +48,8 @@ body {
 
 
 /* ==========================================
-   VIDEO — FILL COMPLETE PORTRAIT SCREEN
+   PORTRAIT 9:16 VIDEO
+   FIT ENTIRE SCREEN
    ========================================== */
 
 #player {
@@ -56,13 +58,25 @@ body {
     top: 50%;
     left: 50%;
 
-    width: 177.78vh;
-    height: 100vh;
+    width: 100vw;
+    height: 177.7778vw;
+
+    min-height: 100vh;
+    min-width: 56.25vh;
 
     transform: translate(-50%, -50%);
 
     border: 0;
     display: block;
+}
+
+
+/* ==========================================
+   HIDE CURSOR
+   ========================================== */
+
+body {
+    cursor: none;
 }
 
 </style>
@@ -86,50 +100,51 @@ body {
 <script>
 
 /* ==========================================
-   ONE VIDEO ONLY
+   ONLY VIDEO
    ========================================== */
 
 const video = "Eh4eyYJ4D3Q";
 
 
 /* ==========================================
-   LOAD VIDEO
+   LOAD YOUTUBE SHORT
    ========================================== */
 
-document.getElementById("player").src =
+const player = document.getElementById("player");
+
+player.src =
     "https://www.youtube.com/embed/" + video +
     "?autoplay=1" +
     "&mute=1" +
     "&controls=0" +
     "&rel=0" +
     "&modestbranding=1" +
-    "&playsinline=1";
+    "&playsinline=1" +
+    "&loop=1" +
+    "&playlist=" + video;
 
 
 /* ==========================================
-   HIDE MOUSE CURSOR
+   KEEP SCREEN FULL SIZE
    ========================================== */
 
-let timer;
+function resizeScreen() {
 
-document.addEventListener("mousemove", function () {
+    document.documentElement.style.width = "100%";
+    document.documentElement.style.height = "100%";
 
-    document.body.style.cursor = "default";
+    document.body.style.width = "100%";
+    document.body.style.height = "100%";
 
-    clearTimeout(timer);
+}
 
-    timer = setTimeout(function () {
-        document.body.style.cursor = "none";
-    }, 2000);
+window.addEventListener("resize", resizeScreen);
 
-});
-
-setTimeout(function () {
-    document.body.style.cursor = "none";
-}, 3000);
+resizeScreen();
 
 </script>
 
 </body>
 
 </html>
+
