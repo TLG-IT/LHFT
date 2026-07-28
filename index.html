@@ -33,18 +33,17 @@ body {
 
 
 /* =========================================
-   HORIZONTAL 16:9 VIDEO
+   HORIZONTAL LED SCREEN
    ========================================= */
 
 .video-container {
 
     position: fixed;
 
+    inset: 0;
+
     width: 100vw;
     height: 100vh;
-
-    left: 0;
-    top: 0;
 
     background: #000;
 
@@ -56,14 +55,28 @@ body {
 }
 
 
-/* Video */
+/* =========================================
+   VERTICAL VIDEO INSIDE HORIZONTAL SCREEN
+   ========================================= */
 
 #player {
 
-    width: 100vw;
+    /*
+       9:16 PORTRAIT VIDEO
+
+       Height = full screen
+       Width = automatically calculated
+    */
+
     height: 100vh;
 
-    border: none;
+    width: 56.25vh;
+
+    max-width: 100vw;
+
+    aspect-ratio: 9 / 16;
+
+    border: 0;
 
     display: block;
 
@@ -92,7 +105,7 @@ body {
 
 
 /* =========================================
-   FATIMA HOTEL RECEPTION PLAYLIST
+   FATIMA HOTEL RECEPTION VIDEOS
    ========================================= */
 
 const videos =
@@ -125,7 +138,7 @@ document.getElementById("player").src =
 
 
 /* =========================================
-   HIDE CURSOR
+   HIDE MOUSE CURSOR
    ========================================= */
 
 let cursorTimer;
