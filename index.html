@@ -23,14 +23,10 @@
 
 html,
 body {
-
     width: 100%;
     height: 100%;
-
     overflow: hidden;
-
     background: #000;
-
 }
 
 
@@ -39,41 +35,26 @@ body {
    ========================================== */
 
 #screen {
-
     position: fixed;
-
     inset: 0;
 
     width: 100vw;
     height: 100vh;
 
     overflow: hidden;
-
     background: #000;
-
 }
 
 
 /* ==========================================
-   YOUTUBE VIDEO
-   ZOOMED TO REMOVE BLACK SPACE
+   VIDEO — FILL COMPLETE PORTRAIT SCREEN
    ========================================== */
 
 #player {
-
     position: absolute;
 
     top: 50%;
     left: 50%;
-
-    /*
-       Original YouTube player is 16:9.
-
-       We make it large enough to fill
-       the vertical 9:16 kiosk.
-
-       The excess sides are cropped.
-    */
 
     width: 177.78vh;
     height: 100vh;
@@ -81,9 +62,7 @@ body {
     transform: translate(-50%, -50%);
 
     border: 0;
-
     display: block;
-
 }
 
 </style>
@@ -92,7 +71,6 @@ body {
 
 
 <body>
-
 
 <div id="screen">
 
@@ -107,37 +85,29 @@ body {
 
 <script>
 
-
 /* ==========================================
-   FATIMA HOTEL RECEPTION VIDEOS
+   ONE VIDEO ONLY
    ========================================== */
 
-const videos =
-"NVUsDQhtq6U,gv6KQlQK7tU,JuAuWy-dCkc,jcWhuuJ1X-U,FanL_bNsrSw";
+const video = "Eh4eyYJ4D3Q";
 
 
 /* ==========================================
-   YOUTUBE PLAYLIST
+   LOAD VIDEO
    ========================================== */
 
-const player =
-    document.getElementById("player");
-
-player.src =
-    "https://www.youtube.com/embed/NVUsDQhtq6U" +
-
+document.getElementById("player").src =
+    "https://www.youtube.com/embed/" + video +
     "?autoplay=1" +
     "&mute=1" +
     "&controls=0" +
     "&rel=0" +
     "&modestbranding=1" +
-    "&playsinline=1" +
-    "&loop=1" +
-    "&playlist=" + videos;
+    "&playsinline=1";
 
 
 /* ==========================================
-   HIDE CURSOR
+   HIDE MOUSE CURSOR
    ========================================== */
 
 let timer;
@@ -149,18 +119,13 @@ document.addEventListener("mousemove", function () {
     clearTimeout(timer);
 
     timer = setTimeout(function () {
-
         document.body.style.cursor = "none";
-
     }, 2000);
 
 });
 
-
 setTimeout(function () {
-
     document.body.style.cursor = "none";
-
 }, 3000);
 
 </script>
