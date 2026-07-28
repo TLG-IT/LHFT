@@ -31,36 +31,41 @@ body {
 
 }
 
-/* Full horizontal display */
 
-body {
+/* =========================================
+   HORIZONTAL 16:9 VIDEO
+   ========================================= */
+
+.video-container {
 
     position: fixed;
 
-    top: 0;
-    left: 0;
-
     width: 100vw;
     height: 100vh;
+
+    left: 0;
+    top: 0;
+
+    background: #000;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
 
 }
 
-/* YouTube */
+
+/* Video */
 
 #player {
-
-    position: absolute;
-
-    top: 0;
-    left: 0;
 
     width: 100vw;
     height: 100vh;
 
-    border: 0;
+    border: none;
 
-    margin: 0;
-    padding: 0;
+    display: block;
 
 }
 
@@ -72,28 +77,66 @@ body {
 <body>
 
 
-<iframe
-    id="player"
-    src="https://www.youtube.com/embed/NVUsDQhtq6U?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&playsinline=1&loop=1&playlist=NVUsDQhtq6U,gv6KQlQK7tU,JuAuWy-dCkc,jcWhuuJ1X-U,FanL_bNsrSw"
-    frameborder="0"
-    allow="autoplay; encrypted-media"
-    allowfullscreen>
-</iframe>
+<div class="video-container">
+
+    <iframe
+        id="player"
+        allow="autoplay; encrypted-media; fullscreen"
+        allowfullscreen>
+    </iframe>
+
+</div>
 
 
 <script>
 
-/* Hide mouse */
 
-let timer;
+/* =========================================
+   FATIMA HOTEL RECEPTION PLAYLIST
+   ========================================= */
+
+const videos =
+"NVUsDQhtq6U,gv6KQlQK7tU,JuAuWy-dCkc,jcWhuuJ1X-U,FanL_bNsrSw";
+
+
+/* =========================================
+   YOUTUBE PLAYER
+   ========================================= */
+
+document.getElementById("player").src =
+
+    "https://www.youtube.com/embed/NVUsDQhtq6U" +
+
+    "?autoplay=1" +
+
+    "&mute=1" +
+
+    "&controls=0" +
+
+    "&rel=0" +
+
+    "&modestbranding=1" +
+
+    "&playsinline=1" +
+
+    "&loop=1" +
+
+    "&playlist=" + videos;
+
+
+/* =========================================
+   HIDE CURSOR
+   ========================================= */
+
+let cursorTimer;
 
 document.addEventListener("mousemove", function () {
 
     document.body.style.cursor = "default";
 
-    clearTimeout(timer);
+    clearTimeout(cursorTimer);
 
-    timer = setTimeout(function () {
+    cursorTimer = setTimeout(function () {
 
         document.body.style.cursor = "none";
 
@@ -101,8 +144,6 @@ document.addEventListener("mousemove", function () {
 
 });
 
-
-/* Hide cursor after 3 seconds */
 
 setTimeout(function () {
 
