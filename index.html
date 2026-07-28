@@ -7,9 +7,9 @@
 
 <meta name="viewport"
       content="width=device-width,
-               initial-scale=1.0,
-               maximum-scale=1.0,
-               user-scalable=no">
+      initial-scale=1.0,
+      maximum-scale=1.0,
+      user-scalable=no">
 
 <title>Fatima Hotel Reception</title>
 
@@ -31,16 +31,15 @@ body {
 }
 
 
-/* =========================================
+/* ==========================================
    VERTICAL DIGITAL SIGNAGE
-   ========================================= */
+   ========================================== */
 
 #screen {
 
     position: fixed;
 
-    top: 0;
-    left: 0;
+    inset: 0;
 
     width: 100vw;
     height: 100vh;
@@ -52,24 +51,24 @@ body {
 }
 
 
-/* =========================================
-   VIDEO FIT
-   ========================================= */
+/* ==========================================
+   YOUTUBE PLAYER
+   FILL SCREEN
+   ========================================== */
 
 #player {
 
     position: absolute;
 
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
 
-    width: 100%;
-    height: 100%;
+    width: 177.78vh;
+    height: 100vh;
+
+    transform: translate(-50%, -50%);
 
     border: 0;
-
-    margin: 0;
-    padding: 0;
 
     display: block;
 
@@ -97,45 +96,52 @@ body {
 <script>
 
 
-/* =========================================
+/* ==========================================
    FATIMA HOTEL RECEPTION VIDEOS
-   ========================================= */
+   ========================================== */
 
 const videos =
 "NVUsDQhtq6U,gv6KQlQK7tU,JuAuWy-dCkc,jcWhuuJ1X-U,FanL_bNsrSw";
 
 
-/* =========================================
-   YOUTUBE PLAYLIST
-   ========================================= */
+/* ==========================================
+   YOUTUBE
+   ========================================== */
 
-const player = document.getElementById("player");
+document.getElementById("player").src =
 
-player.src =
     "https://www.youtube.com/embed/NVUsDQhtq6U" +
+
     "?autoplay=1" +
+
     "&mute=1" +
+
     "&controls=0" +
+
     "&rel=0" +
+
     "&modestbranding=1" +
+
     "&playsinline=1" +
+
     "&loop=1" +
+
     "&playlist=" + videos;
 
 
-/* =========================================
+/* ==========================================
    HIDE MOUSE
-   ========================================= */
+   ========================================== */
 
-let cursorTimer;
+let timer;
 
 document.addEventListener("mousemove", function () {
 
     document.body.style.cursor = "default";
 
-    clearTimeout(cursorTimer);
+    clearTimeout(timer);
 
-    cursorTimer = setTimeout(function () {
+    timer = setTimeout(function () {
 
         document.body.style.cursor = "none";
 
@@ -150,10 +156,9 @@ setTimeout(function () {
 
 }, 3000);
 
-</script>
 
+</script>
 
 </body>
 
 </html>
-
